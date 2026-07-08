@@ -1,0 +1,152 @@
+{
+  "info": {
+    "name": "Ride-Sharing Backend System",
+    "description": "Collection covering User, Driver, Ride, and Admin APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8080" }
+  ],
+  "item": [
+    {
+      "name": "User APIs",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{baseUrl}}/users/register",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Alice Sharma\",\n  \"email\": \"alice@example.com\",\n  \"password\": \"password123\",\n  \"phone\": \"9876543210\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{baseUrl}}/users/login",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"alice@example.com\",\n  \"password\": \"password123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Profile",
+          "request": { "method": "GET", "url": "{{baseUrl}}/users/profile/1" }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{baseUrl}}/users/profile/1",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Alice A. Sharma\",\n  \"phone\": \"9876500000\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get User Rides",
+          "request": { "method": "GET", "url": "{{baseUrl}}/users/1/rides" }
+        }
+      ]
+    },
+    {
+      "name": "Driver APIs",
+      "item": [
+        {
+          "name": "Register Driver",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{baseUrl}}/drivers/register",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Bob Kumar\",\n  \"email\": \"bob@example.com\",\n  \"password\": \"password123\",\n  \"phone\": \"9123456780\",\n  \"vehicleNumber\": \"KA01AB1234\",\n  \"vehicleType\": \"SEDAN\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Login Driver",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{baseUrl}}/drivers/login",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"bob@example.com\",\n  \"password\": \"password123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Driver Status",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{baseUrl}}/drivers/1/status",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"available\": true\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Driver Rides",
+          "request": { "method": "GET", "url": "{{baseUrl}}/drivers/1/rides" }
+        }
+      ]
+    },
+    {
+      "name": "Ride APIs",
+      "item": [
+        {
+          "name": "Book Ride",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": "{{baseUrl}}/rides/book",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": 1,\n  \"pickup\": \"Koramangala\",\n  \"destination\": \"Whitefield\",\n  \"distance\": 12.5\n}"
+            }
+          }
+        },
+        {
+          "name": "Accept Ride",
+          "request": { "method": "PUT", "url": "{{baseUrl}}/rides/1/accept?driverId=1" }
+        },
+        {
+          "name": "Complete Ride",
+          "request": { "method": "PUT", "url": "{{baseUrl}}/rides/1/complete" }
+        },
+        {
+          "name": "Cancel Ride",
+          "request": { "method": "PUT", "url": "{{baseUrl}}/rides/1/cancel" }
+        },
+        {
+          "name": "Get Ride By Id",
+          "request": { "method": "GET", "url": "{{baseUrl}}/rides/1" }
+        },
+        {
+          "name": "Ride History",
+          "request": { "method": "GET", "url": "{{baseUrl}}/rides/history" }
+        }
+      ]
+    },
+    {
+      "name": "Admin APIs",
+      "item": [
+        { "name": "Get All Users", "request": { "method": "GET", "url": "{{baseUrl}}/admin/users" } },
+        { "name": "Get All Drivers", "request": { "method": "GET", "url": "{{baseUrl}}/admin/drivers" } },
+        { "name": "Get All Rides", "request": { "method": "GET", "url": "{{baseUrl}}/admin/rides" } },
+        { "name": "Delete User", "request": { "method": "DELETE", "url": "{{baseUrl}}/admin/user/1" } }
+      ]
+    }
+  ]
+}
